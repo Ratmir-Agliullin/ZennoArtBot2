@@ -12,11 +12,11 @@ public class BotManager extends TelegramLongPollingBot {
 
     @Override
     public String getBotUsername() {
-        return null;
+        return "Bot2";
     }
 
     @Override
     public String getBotToken() {
-        return null;
+        return "367015082:AAHDEcfBder_4Z_oY5LWygwa3qtJlWhzE28";
     }
 }
