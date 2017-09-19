@@ -38,7 +38,7 @@ while(true) {
     }
     currentPostId = parser.getPostId(0, doc);
     try {
-        Thread.sleep(2000);
+        Thread.sleep(60000);
         if (parser.getStringFromFile().equals(currentPostId)) {
 
         } else {
