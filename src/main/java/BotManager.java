@@ -2,6 +2,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.telegram.telegrambots.api.methods.BotApiMethod;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
+import org.telegram.telegrambots.api.objects.Message;
 import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
@@ -19,32 +20,39 @@ private String buffer=null;
 private String CHANNEL_NAME="@channel1ByRadrigo";
     @Override
     public void onUpdateReceived(Update update) {
-
+        Message message = update.getMessage();
+        if(message.getText()!=null)
+            SendText(CHANNEL_NAME,message.getText());
     }
 
-    public BotManager() {
-        Parser parser = new Parser();
-        Document doc =null;
-        try {
-         doc = Jsoup.connect("https://vk.com/unwebsiteinrussian").get();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        String currentPostId = parser.getPostId(0,doc);
-        try {
-            if(parser.getStringFromFile().equals(currentPostId)){
+    public BotManager()
+      {  String currentPostId =null;
+while(true) {
 
-            }
-            else
-            {
-                //написать метод в botService, который будет все данные собирать и отправлять в бот
-                parser.writeStringInFile(currentPostId);
-                SendText(CHANNEL_NAME,BotService.putPostInBot());
-            }
-            System.out.println(currentPostId);
-        } catch (IOException e) {
-            e.printStackTrace();
+    Parser parser = new Parser();
+    Document doc = null;
+    try {
+        doc = Jsoup.connect("https://vk.com/unwebsiteinrussian").get();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    currentPostId = parser.getPostId(0, doc);
+    try {
+        Thread.sleep(2000);
+        if (parser.getStringFromFile().equals(currentPostId)) {
+
+        } else {
+            //написать метод в botService, который будет все данные собирать и отправлять в бот
+            parser.writeStringInFile(currentPostId);
+            SendText(CHANNEL_NAME, BotService.putPostInBot());
         }
+        System.out.println(currentPostId);
+    } catch (IOException e) {
+        e.printStackTrace();
+    } catch (InterruptedException e) {
+        e.printStackTrace();
+    }
+}
 //            for(int i=0;i<3;i++) {
 //                try {
 //                    Thread.sleep(60000);
