@@ -1,1 +1,1 @@
-worker: java -jar TranslateBot1.jar
+worker: java -jar VKWallParser1.jar
