@@ -46,7 +46,7 @@ while(true) {
             parser.writeStringInFile(currentPostId);
             SendText(CHANNEL_NAME, BotService.putPostInBot());
         }
-        System.out.println(currentPostId);
+       // System.out.println(currentPostId);
     } catch (IOException e) {
         e.printStackTrace();
     } catch (InterruptedException e) {
