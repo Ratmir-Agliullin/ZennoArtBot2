@@ -18,55 +18,49 @@ import java.io.Serializable;
 public class BotManager extends TelegramLongPollingBot {
 private String buffer=null;
 private String CHANNEL_NAME="@channel1ByRadrigo";
+private int flag=0;
     @Override
     public void onUpdateReceived(Update update) {
-        Message message = update.getMessage();
-        if(message.getText()!=null)
-            SendText(CHANNEL_NAME,message.getText());
-    }
-
-    public BotManager()
-      {  String currentPostId =null;
-while(true) {
-
-    Parser parser = new Parser();
-    Document doc = null;
-    try {
-        doc = Jsoup.connect("https://vk.com/unwebsiteinrussian").get();
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
-    currentPostId = parser.getPostId(0, doc);
-    try {
-        Thread.sleep(60000);
-        if (parser.getStringFromFile().equals(currentPostId)) {
-
-        } else {
-            //написать метод в botService, который будет все данные собирать и отправлять в бот
-            parser.writeStringInFile(currentPostId);
-            SendText(CHANNEL_NAME, BotService.putPostInBot());
-        }
-       // System.out.println(currentPostId);
-    } catch (IOException e) {
-        e.printStackTrace();
-    } catch (InterruptedException e) {
-        e.printStackTrace();
-    }
-}
-//            for(int i=0;i<3;i++) {
-//                try {
-//                    Thread.sleep(60000);
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
-//                parser.getPostId();
-//                try {
-//                    Document doc = Jsoup.connect("https://vk.com/unwebsiteinrussian").get();
-//                    SendText("@channel1ByRadrigo", parser.getPostText(2, doc) + "\n" + parser.getVideoPostFormIndex(2, doc));
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
+//        Message message = update.getMessage();
+//        while (true) {
+//            if (message.getText() != null && flag==2) {
+//                SendText(CHANNEL_NAME, message.getText());
+//                flag = 1;
 //            }
+//            else
+//                execute();
+//        }
+    }
+
+
+    public BotManager() {
+        String currentPostId = null;
+        while (true) {
+
+            Parser parser = new Parser();
+            Document doc = null;
+            try {
+                doc = Jsoup.connect("https://vk.com/unwebsiteinrussian").get();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            currentPostId = parser.getPostId(0, doc);
+            try {
+                Thread.sleep(60000);
+                if (parser.getStringFromFile().equals(currentPostId)) {
+
+                } else {
+                    //написать метод в botService, который будет все данные собирать и отправлять в бот
+                    parser.writeStringInFile(currentPostId);
+                    SendText(CHANNEL_NAME, BotService.putPostInBot());
+                }
+                // System.out.println(currentPostId);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
 
     }
 
@@ -98,4 +92,6 @@ while(true) {
         }
 
     }
+
+
 }

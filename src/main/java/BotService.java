@@ -32,7 +32,7 @@ public class BotService {
         StringBuffer result = new StringBuffer();
 
         try {
-            for (String s : parser.getPostImages(2, doc)
+            for (String s : parser.getPostImages(0, doc)
                     ) {
                 result.append(s + "\n");
 

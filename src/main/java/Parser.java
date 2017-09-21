@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
  * Created by Аглиуллины on 03.09.2017.
  */
 public class Parser {
-   // public List<String> imageList = new ArrayList<>();
+
     public Integer likesCount = 0;
     public Integer repostCount = 0;
 
@@ -30,7 +30,7 @@ public class Parser {
         Element element = document.select("div._post.post.page_block.all.own").get(index);
         Elements in = element.getElementsByClass("wall_post_text");
         String result = in.get(0).text();
-        // System.out.println(result);
+
         return result;
 
     }
