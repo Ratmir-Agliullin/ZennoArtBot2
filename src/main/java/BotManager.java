@@ -17,7 +17,7 @@ import java.io.Serializable;
  */
 public class BotManager extends TelegramLongPollingBot {
 private String buffer=null;
-private String CHANNEL_NAME="@channel1ByRadrigo";
+private String CHANNEL_NAME="@ZennoArtChannel";
 private int flag=0;
     @Override
     public void onUpdateReceived(Update update) {
@@ -40,7 +40,7 @@ private int flag=0;
             Parser parser = new Parser();
             Document doc = null;
             try {
-                doc = Jsoup.connect("https://vk.com/unwebsiteinrussian").get();
+                doc = Jsoup.connect("https://vk.com/zennoart").get();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -66,12 +66,12 @@ private int flag=0;
 
     @Override
     public String getBotUsername() {
-        return "Bot2";
+        return "ZennoArtBot";
     }
 
     @Override
     public String getBotToken() {
-        return "367015082:AAHDEcfBder_4Z_oY5LWygwa3qtJlWhzE28";
+        return "428706480:AAF6Al_WXGF1r50F-p1GjTERQV5Z-sqq8vg";
     }
 
     public void SendText(String chat_id,  String out){

@@ -1,1 +1,1 @@
-worker: java -jar VKWallParser1.jar
+worker: java -jar ZennoArtBot2.jar
